@@ -1,0 +1,67 @@
+body{
+    overflow-x:hidden;
+}
+
+.row{
+    margin-left:0;
+    margin-bottom:10px;
+}
+
+h1{
+    text-align: center;
+    border-bottom:solid black 3px;
+    margin-top:10px;
+    padding-bottom:10px;
+}
+
+.btn-default{
+    background-color: lightblue;
+}
+
+#playerName{
+    font-weight:bold;
+    font-size:20px;
+}
+
+#player1{
+    border-right:dashed black 3px;
+}
+
+#chatDisplay{
+    width:100%;
+    margin-bottom:20px;
+    overflow-y: scroll;
+    height:15vh;
+}
+
+#submit{
+    width:100%;
+    font-weight: bold;
+}
+
+#chat-entry{
+    overflow-y: auto;
+    width:100%;
+}
+
+#chatContainer{
+    position:absolute;
+    bottom: 0px;
+    width:100%;
+}
+
+#playerName{
+    text-align: center;
+}
+
+#player1, #player2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chatHeader{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}

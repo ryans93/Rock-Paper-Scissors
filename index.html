@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+
+    <h1>Select a choice to begin</h1>
+    <div class="row">
+        <div class="col-xs-6" id="player1">
+            <div class="row" id="playerName">Player 1</div>
+            <div class="row" id="choicePic"></div>
+            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Rock</button>
+                <button type="button" class="btn btn-default">Paper</button>
+                <button type="button" class="btn btn-default">Scissors</button>
+            </div>
+            <div class="row" id="wins"></div>
+            <div class="row" id="losses"></div>
+            <div class="row" id="ties"></div>
+        </div>
+        <div class="col-xs-6" id="player2">
+            <div class="row" id="playerName">Player 2</div>
+            <div class="row" id="choicePic"></div>
+            <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <button type="button" class="btn btn-default playerSelect">Rock</button>
+                <button type="button" class="btn btn-default playerSelect">Paper</button>
+                <button type="button" class="btn btn-default playerSelect">Scissors</button>
+            </div>
+            <div class="row" id="wins"></div>
+            <div class="row" id="losses"></div>
+            <div class="row" id="ties"></div>
+        </div>
+
+
+    </div>
+    <div class="row" id="chatContainer">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div class="row" id="chatHeader">Chat Room</div>
+            <textarea id="chatDisplay"></textarea>
+            <div class="row">
+                <div class="col-xs-10" style="padding-left:0;">
+                    
+                        <input type="text" class="form-control" id="chat-entry" aria-describedby="basic-addon3">
+                    
+                </div>
+                <div class="col-xs-2">
+                    <button type="button" class="btn btn-default" id="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
