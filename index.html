@@ -16,31 +16,26 @@
 
 <body>
 
-    <h1>Select a choice to begin</h1>
+    <h1>Rock Paper Scissors!</h1>
     <div class="row">
-        <div class="col-xs-6" id="player1">
-            <div class="row" id="playerName">Player 1</div>
-            <div class="row" id="choicePic"></div>
-            <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">Rock</button>
-                <button type="button" class="btn btn-default">Paper</button>
-                <button type="button" class="btn btn-default">Scissors</button>
+        <div class="col-xs-6" id="player">
+            <div class="row" id="playerDisplay">You</div>
+            <div class="row" id="playerChoicePic"></div>
+            <div class="btn-group btn-group-lg" role="group" aria-label="..." id="rpsSelect">
+                <button type="button" class="btn btn-default playerSelect" id="rock">Rock</button>
+                <button type="button" class="btn btn-default playerSelect" id="paper">Paper</button>
+                <button type="button" class="btn btn-default playerSelect" id="scissors">Scissors</button>
             </div>
-            <div class="row" id="wins"></div>
-            <div class="row" id="losses"></div>
-            <div class="row" id="ties"></div>
+            <div class="row" id="wins">Wins: </div>
+            <div class="row" id="losses">Losses: </div>
+            <div class="row" id="ties">Ties: </div>
         </div>
-        <div class="col-xs-6" id="player2">
-            <div class="row" id="playerName">Player 2</div>
-            <div class="row" id="choicePic"></div>
-            <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                <button type="button" class="btn btn-default playerSelect">Rock</button>
-                <button type="button" class="btn btn-default playerSelect">Paper</button>
-                <button type="button" class="btn btn-default playerSelect">Scissors</button>
-            </div>
-            <div class="row" id="wins"></div>
-            <div class="row" id="losses"></div>
-            <div class="row" id="ties"></div>
+        <div class="col-xs-6" id="opp">
+            <div class="row" id="oppDisplay">Opponent</div>
+            <div class="row" id="oppChoicePic"></div>
+            <div class="row" id="wins">Wins: </div>
+            <div class="row" id="losses">Losses: </div>
+            <div class="row" id="ties">Ties: </div>
         </div>
 
 
@@ -62,6 +57,7 @@
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 
