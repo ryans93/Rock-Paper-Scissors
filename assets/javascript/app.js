@@ -32,6 +32,16 @@ database.ref("/Players").once("value", function (snapshot) { //initializing fire
     console.log("The read failed: " + errorObject.code);
 });
 
+$("#submit").on("click", function(){
+    var string="Player "+playerID+": ";
+    string+=$("#chat-entry").val();
+    database.ref("/Chat").push(string);
+});
+
+database.ref("/Chat").on("value", function (snapshot) {
+    $("#chatDisplay").html(snapshot.val());
+});
+
 $("#rock").on("click", function () {
     $("#rpsSelect").hide();
     $("#playerChoicePic").html("<img src=assets/images/rock.png>");
@@ -87,6 +97,9 @@ function checkChoices() {
 
 function play(players) {
     var oppChoice;
+    var wins;
+    var losses;
+    var ties;
     if (playerID === 1) {
         oppChoice = players.Player2.choice;
     }
@@ -100,6 +113,17 @@ function play(players) {
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
 
+        if (playerID === 1) {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player1/ties").set(ties);
+        }
+        else {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player2/ties").set(ties);
+        }
+
         setTimeout(function () {
             reset()
         }, 5000);
@@ -112,6 +136,17 @@ function play(players) {
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
 
+        if (playerID === 1) {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player1/losses").set(losses);
+        }
+        else {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player2/losses").set(losses);
+        }
+
         setTimeout(function () {
             reset()
         }, 5000);
@@ -122,6 +157,17 @@ function play(players) {
         $("#playerDisplay").html("You chose " + choice);
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
+
+        if (playerID === 1) {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player1/wins").set(wins);
+        }
+        else {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player2/wins").set(wins);
+        }
 
         setTimeout(function () {
             reset()
@@ -135,6 +181,17 @@ function play(players) {
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
 
+        if (playerID === 1) {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player1/wins").set(wins);
+        }
+        else {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player2/wins").set(wins);
+        }
+
         setTimeout(function () {
             reset()
         }, 5000);
@@ -146,6 +203,17 @@ function play(players) {
         $("#playerDisplay").html("You chose " + choice);
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
+
+        if (playerID === 1) {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player1/ties").set(ties);
+        }
+        else {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player2/ties").set(ties);
+        }
 
         setTimeout(function () {
             reset()
@@ -159,6 +227,17 @@ function play(players) {
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
 
+        if (playerID === 1) {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player1/losses").set(losses);
+        }
+        else {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player2/losses").set(losses);
+        }
+
         setTimeout(function () {
             reset()
         }, 5000);
@@ -170,6 +249,17 @@ function play(players) {
         $("#playerDisplay").html("You chose " + choice);
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
+
+        if (playerID === 1) {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player1/losses").set(losses);
+        }
+        else {
+            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses++;
+            database.ref("/Players/Player2/losses").set(losses);
+        }
 
         setTimeout(function () {
             reset()
@@ -183,6 +273,17 @@ function play(players) {
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
 
+        if (playerID === 1) {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player1/wins").set(wins);
+        }
+        else {
+            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins++;
+            database.ref("/Players/Player2/wins").set(wins);
+        }
+
         setTimeout(function () {
             reset()
         }, 5000);
@@ -193,6 +294,17 @@ function play(players) {
         $("#playerDisplay").html("You chose " + choice);
         $("#oppDisplay").html("Your opponent chose " + oppChoice);
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
+
+        if (playerID === 1) {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player1/ties").set(ties);
+        }
+        else {
+            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties++;
+            database.ref("/Players/Player2/ties").set(ties);
+        }
 
         setTimeout(function () {
             reset()
