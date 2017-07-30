@@ -18,6 +18,7 @@ var player = {
 
 var playerID;
 var choice;
+var gameInProgress = false;
 
 database.ref("/Players").once("value", function (snapshot) { //initializing firebase
     if (snapshot.val() === null) {
@@ -32,14 +33,16 @@ database.ref("/Players").once("value", function (snapshot) { //initializing fire
     console.log("The read failed: " + errorObject.code);
 });
 
-$("#submit").on("click", function(){
-    var string="Player "+playerID+": ";
-    string+=$("#chat-entry").val();
+$("#submit").on("click", function () {
+    var string = "Player " + playerID + ": ";
+    string += $("#chat-entry").val() + '\n';
     database.ref("/Chat").push(string);
+    $("#chat-entry").val('');
 });
 
-database.ref("/Chat").on("value", function (snapshot) {
-    $("#chatDisplay").html(snapshot.val());
+database.ref("/Chat").on("child_added", function (snapshot) {
+    console.log(snapshot.val());
+    $("#chatDisplay").append(snapshot.val());
 });
 
 $("#rock").on("click", function () {
@@ -87,15 +90,19 @@ function checkChoices() {
         var players = snapshot.val();
         if (players.Player2 !== undefined) {
             if (players.Player1.choice != "" && players.Player2.choice != "") {
-                play(players);
+                if (!gameInProgress) {
+                    play(players);
+                }
             }
         }
     }, function (errorObject) { //error handler function
         console.log("The read failed: " + errorObject.code);
     });
+
 }
 
 function play(players) {
+    gameInProgress = true;
     var oppChoice;
     var wins;
     var losses;
@@ -114,12 +121,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
 
         if (playerID === 1) {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player1.ties);
             ties++;
             database.ref("/Players/Player1/ties").set(ties);
         }
         else {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player2.ties);
             ties++;
             database.ref("/Players/Player2/ties").set(ties);
         }
@@ -137,12 +144,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
 
         if (playerID === 1) {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player1.losses);
             losses++;
             database.ref("/Players/Player1/losses").set(losses);
         }
         else {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player2.losses);
             losses++;
             database.ref("/Players/Player2/losses").set(losses);
         }
@@ -159,12 +166,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
 
         if (playerID === 1) {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player1.wins);
             wins++;
             database.ref("/Players/Player1/wins").set(wins);
         }
         else {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player2.wins);
             wins++;
             database.ref("/Players/Player2/wins").set(wins);
         }
@@ -182,12 +189,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
 
         if (playerID === 1) {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player1.wins);
             wins++;
             database.ref("/Players/Player1/wins").set(wins);
         }
         else {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player2.wins);
             wins++;
             database.ref("/Players/Player2/wins").set(wins);
         }
@@ -205,12 +212,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
 
         if (playerID === 1) {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player1.ties);
             ties++;
             database.ref("/Players/Player1/ties").set(ties);
         }
         else {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player2.ties);
             ties++;
             database.ref("/Players/Player2/ties").set(ties);
         }
@@ -228,12 +235,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
 
         if (playerID === 1) {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player1.losses);
             losses++;
             database.ref("/Players/Player1/losses").set(losses);
         }
         else {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player2.losses);
             losses++;
             database.ref("/Players/Player2/losses").set(losses);
         }
@@ -251,12 +258,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/rock.png>");
 
         if (playerID === 1) {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player1.losses);
             losses++;
             database.ref("/Players/Player1/losses").set(losses);
         }
         else {
-            losses = parseInt(database.ref("/Players/Player1/losses").get());
+            losses = parseInt(players.Player2.losses);
             losses++;
             database.ref("/Players/Player2/losses").set(losses);
         }
@@ -274,12 +281,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/paper.jpeg>");
 
         if (playerID === 1) {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player1.wins);
             wins++;
             database.ref("/Players/Player1/wins").set(wins);
         }
         else {
-            wins = parseInt(database.ref("/Players/Player1/wins").get());
+            wins = parseInt(players.Player2.wins);
             wins++;
             database.ref("/Players/Player2/wins").set(wins);
         }
@@ -296,12 +303,12 @@ function play(players) {
         $("#oppChoicePic").html("<img src=assets/images/scissors.jpeg>");
 
         if (playerID === 1) {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player1.ties);
             ties++;
             database.ref("/Players/Player1/ties").set(ties);
         }
         else {
-            ties = parseInt(database.ref("/Players/Player1/ties").get());
+            ties = parseInt(players.Player2.ties);
             ties++;
             database.ref("/Players/Player2/ties").set(ties);
         }
@@ -309,9 +316,7 @@ function play(players) {
         setTimeout(function () {
             reset()
         }, 5000);
-
     }
-
 }
 
 function reset() {
@@ -323,5 +328,30 @@ function reset() {
     $("#playerDisplay").html("You");
     $("#oppDisplay").html("Opponent");
     $("h1").html("Rock Paper Scissors!");
+    gameInProgress = false;
+    append();
+}
+
+function append() {
+
+    database.ref("/Players").once("value", function (snapshot) {
+        players=snapshot.val();
+        if (playerID === 1) {
+            $("#wins").html("Wins: " + players.Player1.wins);
+            $("#losses").html("Losses: " + players.Player1.losses);
+            $("#ties").html("Ties: " + players.Player1.ties);
+            $("#oppWins").html("Wins: " + players.Player2.wins);
+            $("#oppLosses").html("Losses: " + players.Player2.losses);
+            $("#oppTies").html("Ties: " + players.Player2.ties);
+        }
+        else {
+            $("#wins").html("Wins: " + players.Player2.wins);
+            $("#losses").html("Losses: " + players.Player2.losses);
+            $("#ties").html("Ties: " + players.Player2.ties);
+            $("#oppWins").html("Wins: " + players.Player1.wins);
+            $("#oppLosses").html("Losses: " + players.Player1.losses);
+            $("#oppTies").html("Ties: " + players.Player1.ties);
+        }
+    });
 }
 

@@ -78,3 +78,7 @@ img {
     width: 100%;
     height: 100%;
 }
+
+#chatDisplay{
+    border: solid blue 3px;
+}
